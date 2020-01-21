@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText password2;
     Button btn_login;
     FakeServer fakeServer;
+    public  static final String USER_KEY="welcome";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,24 +31,24 @@ public class LoginActivity extends AppCompatActivity {
         fakeServer = intent.getParcelableExtra("fakeServer");
 
 
-
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               boolean checking= fakeServer.isExistingUser(username2.getText().toString(),password2.getText().toString());
+                boolean checking = fakeServer.isExistingUser(username2.getText().toString(), password2.getText().toString());
 
-               if(checking) {
+                if (checking) {
 
 
-                   Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
-                   startActivity(intent);
-                   Toast.makeText(LoginActivity.this, "Welcome " + username2.getText(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
+                    intent.putExtra(USER_KEY, username2.getText().toString());
+                    startActivity(intent);
 
-               }
-               else{
-                   Toast.makeText(LoginActivity.this, "User or password wrong!", Toast.LENGTH_LONG).show();
-               }
+
+                   // Toast.makeText(LoginActivity.this, "Welcome " + username2.getText(), Toast.LENGTH_LONG).show();
+
+                } else {
+                    Toast.makeText(LoginActivity.this, "User or password wrong!", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

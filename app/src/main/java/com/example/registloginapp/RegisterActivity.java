@@ -34,12 +34,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
+                boolean checking = user.isEmpty() && pass.isEmpty();
 
-                if (user.isEmpty() && pass.isEmpty()) {
+                if (checking) {
                     Toast.makeText(RegisterActivity.this, "User or password empty", Toast.LENGTH_LONG).show();
                 } else {
                     FakeServer fakeServer = new FakeServer();
-                    fakeServer.registerUser("username", "password");
+                    fakeServer.registerUser(user, pass);
 
 
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);

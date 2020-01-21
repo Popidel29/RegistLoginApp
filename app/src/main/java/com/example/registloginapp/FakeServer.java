@@ -57,7 +57,7 @@ public class FakeServer implements Parcelable {
 
     public boolean isExistingUser(String username2, String password2) {
 
-        return username.equals(username) && password.equals(password2);
+        return username.equals(username2) && password.equals(password2);
 
 
     }

@@ -11,7 +11,6 @@ import android.widget.Toast;
 public class WelcomeActivity extends AppCompatActivity {
     TextView message;
 
-    FakeServer fakeServer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +18,13 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
 
-        message= findViewById(R.id.message);
+        message= findViewById(R.id.welcome);
 
         Intent intent = getIntent();
-        fakeServer =  intent.getParcelableExtra("fakeServer");
 
+        String username3=intent.getStringExtra(LoginActivity.USER_KEY);
+
+        message.setText(getString(R.string.welcome_message, username3));
 
     }
 }
