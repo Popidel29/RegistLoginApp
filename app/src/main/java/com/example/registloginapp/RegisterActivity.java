@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText username;
-    EditText password;
-    Button btn_register;
+    private EditText username;
+    private EditText password;
+    private Button btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
                     fakeServer.registerUser(user, pass);
 
 
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    intent.putExtra("fakeServer", fakeServer);
-                    startActivity(intent);
+                    Intent goToLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                    goToLogin.putExtra("fakeServer", fakeServer);
+                    startActivity(goToLogin);
 
                 }
             }

@@ -1,12 +1,10 @@
 package com.example.registloginapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
     TextView message;
@@ -25,6 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
         String username3=intent.getStringExtra(LoginActivity.USER_KEY);
 
         message.setText(getString(R.string.welcome_message, username3));
+        //preferences.getString(PREFS_PASSWORD,"");
 
     }
 }

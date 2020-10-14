@@ -12,9 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText username2;
-    EditText password2;
-    Button btn_login;
+    private EditText username2;
+    private EditText password2;
+    private Button btn_login;
     FakeServer fakeServer;
     public  static final String USER_KEY="welcome";
 
@@ -34,22 +34,30 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String user = username2.getText().toString();
+                String pass = password2.getText().toString();
                 boolean checking = fakeServer.isExistingUser(username2.getText().toString(), password2.getText().toString());
-
+                boolean empty =user.isEmpty() && pass.isEmpty();
                 if (checking) {
 
 
-                    Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
-                    intent.putExtra(USER_KEY, username2.getText().toString());
-                    startActivity(intent);
+                    Intent goToWelcome = new Intent(LoginActivity.this, WelcomeActivity.class);
+                    goToWelcome.putExtra(USER_KEY, username2.getText().toString());
+                    startActivity(goToWelcome);
 
 
                    // Toast.makeText(LoginActivity.this, "Welcome " + username2.getText(), Toast.LENGTH_LONG).show();
 
-                } else {
+                }
+                else if(empty){
+                    Toast.makeText(LoginActivity.this, "User or password can't be empty", Toast.LENGTH_LONG).show();
+                }
+                else  {
                     Toast.makeText(LoginActivity.this, "User or password wrong!", Toast.LENGTH_LONG).show();
                 }
+
             }
+
         });
     }
 }
